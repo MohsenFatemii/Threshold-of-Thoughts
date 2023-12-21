@@ -12,4 +12,5 @@ Here is the image before setting threshold :
 
 Here is the image after setting threshold :
 
-![image](https://github.com/MohsenFatemii/Threshold-of-Thoughts/assets/20028598/1bc25d0a-4dae-445b-90c3-5597489f700a)
+![image](https://github.com/MohsenFatemii/Threshold-of-Thoughts/assets/20028598/2f14ffa0-df86-44d3-8b00-69e27211d8ca)
+
