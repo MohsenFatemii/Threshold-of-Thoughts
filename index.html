@@ -21,6 +21,10 @@
             display: inline-block;
         }
 
+        #resetButton {
+            margin-left: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -30,6 +34,7 @@
         <label for="thresholdSlider">Threshold:</label>
         <input type="range" id="thresholdSlider" min="0" max="255" value="128">
         <span id="thresholdValue">128</span>
+        <button id="resetButton">Reset Image</button>
     </div>
 
     <script>
@@ -65,10 +70,9 @@
 
             array.forEach((row, rowIndex) => {
                 row.forEach((value, colIndex) => {
-                    // Apply threshold rounding
                     const roundedValue = value ;
 
-                    ctx.fillStyle = `rgb(${roundedValue},${roundedValue},${roundedValue})`;
+                    ctx.fillStyle = `rgb(${value},${value},${value})`;
                     ctx.fillRect(colIndex * pixelSize, rowIndex * pixelSize, pixelSize, pixelSize);
                 });
             });
@@ -81,6 +85,14 @@
 
             // Draw the image using the displayed array
             drawImage(displayedArray, thresholdValue);
+        });
+
+        document.getElementById('resetButton').addEventListener('click', function () {
+            const initialThresholdValue = parseInt(document.getElementById('thresholdSlider').value, 10);
+            document.getElementById('thresholdValue').innerText = initialThresholdValue;
+
+            // Draw the initial image using the displayed array
+            drawImage_onLoad(displayedArray);
         });
 
         // Generate the initial image using the displayed array
