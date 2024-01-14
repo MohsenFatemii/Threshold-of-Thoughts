@@ -118,7 +118,6 @@
 
             // Update the color square and color gradient
             updateColorSquare(thresholdValue);
-            updateColorGradient(255);
 
             // Update the displayed array with the new threshold
             displayedArray = staticArray.map(row => row.map(value => (value > thresholdValue ? 255 : 0)));
@@ -136,8 +135,7 @@
             drawImage(displayedArray);
 
             // Update the color square and color gradient
-            updateColorSquare(128);
-            updateColorGradient(255);
+            updateColorSquare(255);
         });
 
         // Generate the initial image using the displayed array
@@ -146,7 +144,7 @@
             drawImage(displayedArray);
 
             // Update the initial color square and color gradient
-            updateColorSquare(128);
+            updateColorSquare(255);
             updateColorGradient(255);
         };
     </script>
