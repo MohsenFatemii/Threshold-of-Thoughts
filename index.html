@@ -182,8 +182,8 @@
                     // Update the color square and color gradient
                     updateColorSquare(thresholdValue);
                     updateColorGradient(255);
-                    const mixPercentage = document.getElementById('mixPercentage').value/100.0;
-                    displayedArray = staticArray.map(row => row.map(value => Math.random() > 0.5 ? (value > thresholdValue ? 255 : 0) : value));
+                    const mixPercentage = document.getElementById('mixPercentage').value;
+                    displayedArray = staticArray.map(row => row.map(value => Math.random() * 100 < mixPercentage ? (value > thresholdValue ? 255 : 0) : value));
                     break;
                 case 'random':
                     // Update the color square and color gradient
