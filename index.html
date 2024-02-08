@@ -49,6 +49,11 @@
             margin: 20px;
             text-align: center;
         }
+
+        #mixedOptionContainer{
+            margin: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -72,6 +77,11 @@
     <div id="colorSquareContainer">
         <label>Selected Color :</label>
         <canvas id="colorSquare" width="20" height="20"></canvas>
+    </div>
+
+    <div id="mixedOptionContainer" style="display:none;">
+        <label for="mixPercentage">Percentage:</label>
+        <input type="number" id="mixPercentage" min="1" max="100" value="50">
     </div>
 
     <script>
@@ -172,6 +182,7 @@
                     // Update the color square and color gradient
                     updateColorSquare(thresholdValue);
                     updateColorGradient(255);
+                    const mixPercentage = document.getElementById('mixPercentage').value/100.0;
                     displayedArray = staticArray.map(row => row.map(value => Math.random() > 0.5 ? (value > thresholdValue ? 255 : 0) : value));
                     break;
                 case 'random':
@@ -187,6 +198,23 @@
             // Draw the image using the displayed array
             drawImage(displayedArray);
         }
+
+        // Event listener for color mode change
+        document.getElementById('colorMode').addEventListener('change', function () {
+            const colorMode = this.value;
+            const mixedOptionContainer = document.getElementById('mixedOptionContainer');
+            if (colorMode === 'mixed') {
+                mixedOptionContainer.style.display = 'block';
+            } else {
+                mixedOptionContainer.style.display = 'none';
+            }
+            handleColorModeChange(255); // Reset threshold when changing color mode
+        });
+
+        // Event listener for mix percentage change
+        document.getElementById('mixPercentage').addEventListener('change', function () {
+            handleColorModeChange(255); // Reset threshold when changing mix percentage
+        });
 
 
         // Update the threshold value and redraw the image when the color gradient is clicked
