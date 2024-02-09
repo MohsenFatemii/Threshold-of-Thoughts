@@ -173,6 +173,7 @@
         function handleColorModeChange(thresholdValue) {
             const colorMode = document.getElementById('colorMode').value;
             displayedArray = staticArray.map(row => [...row]);
+            const mixPercentage = document.getElementById('mixPercentage').value;
             switch (colorMode) {
                 case 'binary':
                     // Update the color square and color gradient
@@ -184,7 +185,6 @@
                     // Update the color square and color gradient
                     updateColorSquare(thresholdValue);
                     updateColorGradient(255);
-                    const mixPercentage = document.getElementById('mixPercentage').value;
                     displayedArray = staticArray.map(row => row.map(value => Math.random() * 100 < mixPercentage ? (value > thresholdValue ? 255 : 0) : value));
                     break;
 
@@ -192,7 +192,6 @@
                     // Update the color square and color gradient
                     updateColorSquare(thresholdValue);
                     updateColorGradient(255);
-                    mixPercentage = document.getElementById('mixPercentage').value;
                     displayedArray = staticArray.map(row => row.map(value => Math.random() * 100 < mixPercentage ? 128 : value));
                     break;
 
@@ -200,9 +199,8 @@
                     // Update the color square and color gradient
                     updateColorSquare(thresholdValue);
                     updateColorGradient(255);
-                    mixPercentage = document.getElementById('mixPercentage').value/2;
-                    displayedArray = staticArray.map(row => row.map(value => Math.random() *100 < mixPercentage ? 255 : value));
-                    displayedArray = staticArray.map(row => row.map(value => Math.random() *100 < mixPercentage ? 0 : value));
+                    displayedArray = staticArray.map(row => row.map(value => Math.random() *100 < mixPercentage/2 ? 255 : value));
+                    displayedArray = displayedArray.map(row => row.map(value => Math.random() *100 < mixPercentage/2 ? 0 : value));
                     break;
 
                 case 'completely-random':
