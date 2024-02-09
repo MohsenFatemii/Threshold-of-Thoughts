@@ -63,8 +63,10 @@
         <label for="colorMode">Color Mode:</label>
         <select id="colorMode">
             <option value="binary">Binary</option>
+            <option value="gray">Gray</option>
+            <option value="partial-random">Partial Random</option>
             <option value="mixed">Mixed</option>
-            <option value="random">Random</option>
+            <option value="completely-random">Completely Random</option>
         </select>
     </div>
 
@@ -185,7 +187,25 @@
                     const mixPercentage = document.getElementById('mixPercentage').value;
                     displayedArray = staticArray.map(row => row.map(value => Math.random() * 100 < mixPercentage ? (value > thresholdValue ? 255 : 0) : value));
                     break;
-                case 'random':
+
+                case 'gray':
+                    // Update the color square and color gradient
+                    updateColorSquare(thresholdValue);
+                    updateColorGradient(255);
+                    mixPercentage = document.getElementById('mixPercentage').value;
+                    displayedArray = staticArray.map(row => row.map(value => Math.random() * 100 < mixPercentage ? 128 : value));
+                    break;
+
+                case 'partial-random':
+                    // Update the color square and color gradient
+                    updateColorSquare(thresholdValue);
+                    updateColorGradient(255);
+                    mixPercentage = document.getElementById('mixPercentage').value/2;
+                    displayedArray = staticArray.map(row => row.map(value => Math.random() *100 < mixPercentage ? 255 : value));
+                    displayedArray = staticArray.map(row => row.map(value => Math.random() *100 < mixPercentage ? 0 : value));
+                    break;
+
+                case 'completely-random':
                     // Update the color square and color gradient
                     updateColorSquare(thresholdValue);
                     updateColorGradient(255);
@@ -203,7 +223,7 @@
         document.getElementById('colorMode').addEventListener('change', function () {
             const colorMode = this.value;
             const mixedOptionContainer = document.getElementById('mixedOptionContainer');
-            if (colorMode === 'mixed') {
+            if (colorMode === 'mixed' || colorMode === 'partial-random' || colorMode === 'gray') {
                 mixedOptionContainer.style.display = 'block';
             } else {
                 mixedOptionContainer.style.display = 'none';
