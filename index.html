@@ -54,10 +54,24 @@
             margin: 20px;
             text-align: center;
         }
+
+        #imageSelectContainer{
+            margin: 20px;
+            text-align: center;   
+        }
     </style>
 </head>
 <body>
     <canvas id="canvas" width="1063" height="598"></canvas>
+    <div id="imageSelectContainer">
+        <label for="imageSelect">Select Image:</label>
+        <select id="imageSelect">
+            <option value="azadi.png">Azadi</option>
+            <option value="butterfly.png">Butterfly</option>
+            <option value="fountain.png">Fountain</option>
+            <option value="horse.png">Horse</option>
+        </select>
+    </div>
 
     <div id="colorModeContainer">
         <label for="colorMode">Color Mode:</label>
@@ -96,7 +110,7 @@
         const ctx = canvas.getContext('2d');
 
         const img = new Image();
-        img.src = 'file.png';
+        img.src = 'azadi.png';
 
         const staticArray = []; // Grayscale image data array
 
@@ -270,6 +284,42 @@
             updateColorSquare(255);
             updateColorGradient(255);
         };
+
+        // Function to load the selected image onto the canvas
+        function loadImage(selectedImage) {
+            const img = new Image();
+            img.src = selectedImage;
+
+            img.onload = function () {
+                ctx.drawImage(img, 0, 0); // Draw the image at (0, 0) on the canvas
+
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const pixelData = imageData.data;
+
+                const width = canvas.width;
+                const height = canvas.height;
+
+                staticArray = []; // Clear the existing staticArray
+
+                for (let y = 0; y < height; y++) {
+                    const row = [];
+                    for (let x = 0; x < width; x++) {
+                        const i = (y * width + x) * 4; // Calculate the index
+                        const grayscaleValue = pixelData[i]; // Red channel value
+                        row.push(grayscaleValue);
+                    }
+                    staticArray.push(row);
+                }
+
+                // Draw the image using the displayed array
+                drawImage(staticArray);
+            };
+        }
+
+        document.getElementById('imageSelect').addEventListener('change', function () {
+            const selectedImage = this.value;
+            loadImage(selectedImage);
+        });
     </script>
 </body>
 </html>
