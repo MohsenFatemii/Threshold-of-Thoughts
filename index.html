@@ -248,7 +248,9 @@
             const mixedOptionContainer = document.getElementById('mixedOptionContainer');
             if (colorMode === 'mixed' || colorMode === 'partial-random' || colorMode === 'gray') {
                 mixedOptionContainer.style.display = 'block';
-            } else {
+            } else if(colorMode==='invert') {
+                handleColorModeChange(255);
+            }else
                 mixedOptionContainer.style.display = 'none';
             }
             // handleColorModeChange(255); // Reset threshold when changing color mode
