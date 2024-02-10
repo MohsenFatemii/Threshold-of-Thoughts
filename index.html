@@ -53,12 +53,12 @@
             text-align: center;
         }
 
-        #mixedOptionContainer{
+        #mixedOptionContainer {
             margin: 20px;
             text-align: center;
         }
 
-        #imageSelectContainer{
+        #imageSelectContainer {
             margin: 20px;
             text-align: center;   
         }
@@ -73,6 +73,7 @@
             <option value="butterfly.png">Butterfly</option>
             <option value="fountain.png">Fountain</option>
             <option value="horse.png">Horse</option>
+            <option value="lake.png">Lake</option>
         </select>
     </div>
 
@@ -113,18 +114,18 @@
         const ctx = canvas.getContext('2d');
 
         const img = new Image();
-        img.src = 'azadi.png';
+        img.src = 'Images/azadi.png';
 
         let staticArray = []; // Grayscale image data array
 
         img.onload = function () {
             ctx.drawImage(img, 0, 0); // Draw the image at (0, 0) on the canvas
 
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const pixelData = imageData.data;
-
             const width = canvas.width;
             const height = canvas.height;
+
+            const imageData = ctx.getImageData(0, 0, width, height);
+            const pixelData = imageData.data;
 
             for (let y = 0; y < height; y++) {
                 const row = [];
@@ -291,7 +292,7 @@
         // Function to load the selected image onto the canvas
         function loadImage(selectedImage) {
             const img = new Image();
-            img.src = selectedImage;
+            img.src = "Images/"+selectedImage;
 
             img.onload = function () {
                 ctx.drawImage(img, 0, 0); // Draw the image at (0, 0) on the canvas
