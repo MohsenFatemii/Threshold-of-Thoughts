@@ -85,6 +85,7 @@
             <option value="partial-random">Partial Random</option>
             <option value="mixed">Mixed</option>
             <option value="completely-random">Completely Random</option>
+            <option value="invert">Invert</option>
         </select>
     </div>
 
@@ -226,6 +227,12 @@
                     updateColorSquare(thresholdValue);
                     updateColorGradient(255);
                     displayedArray = staticArray.map(row => row.map(value => Math.random() > 0.5 ? 255 : 0));
+                    break;
+                case 'invert':
+                    // Update the color square and color gradient
+                    updateColorSquare(thresholdValue);
+                    updateColorGradient(255);
+                    displayedArray = staticArray.map(row => row.map(value => (255 - value)));
                     break;
                 default:
                     break;
