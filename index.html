@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Threshold Grayscale Image</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
         canvas {
             border: 1px solid #000;
@@ -65,7 +68,7 @@
     <canvas id="canvas" width="1063" height="598"></canvas>
     <div id="imageSelectContainer">
         <label for="imageSelect">Select Image:</label>
-        <select id="imageSelect">
+        <select class="box"  id="imageSelect">
             <option value="azadi.png">Azadi</option>
             <option value="butterfly.png">Butterfly</option>
             <option value="fountain.png">Fountain</option>
@@ -75,7 +78,7 @@
 
     <div id="colorModeContainer">
         <label for="colorMode">Color Mode:</label>
-        <select id="colorMode">
+        <select class="box" id="colorMode">
             <option value="binary">Binary</option>
             <option value="gray">Gray</option>
             <option value="partial-random">Partial Random</option>
