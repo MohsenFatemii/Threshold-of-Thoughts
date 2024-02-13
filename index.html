@@ -245,6 +245,17 @@
         // Event listener for color mode change
         document.getElementById('colorMode').addEventListener('change', function () {
             const colorMode = this.value;
+
+            // Reseting image
+            displayedArray = staticArray.map(row => [...row]);
+
+            // Draw the image using the displayed array
+            drawImage(displayedArray);
+
+            // Update the color square and color gradient
+            updateColorSquare(255);
+            updateColorGradient(255);
+
             const mixedOptionContainer = document.getElementById('mixedOptionContainer');
             if (colorMode === 'mixed' || colorMode === 'partial-random' || colorMode === 'gray') {
                 mixedOptionContainer.style.display = 'block';
